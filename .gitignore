@@ -3,14 +3,14 @@
 
 # Directories
 venv/
-.venv/
+.venv
 __pycache__/
 
 # Python bytecode
 *.pyc
 
 # PyCharm settings
-.idea/
+.idea
 
 # Other default ignored files
 *.log
