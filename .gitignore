@@ -3,6 +3,7 @@
 
 # Directories
 venv/
+.venv/
 __pycache__/
 
 # Python bytecode
