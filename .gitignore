@@ -1,0 +1,15 @@
+# Created by virtualenv automatically
+*
+
+# Directories
+venv/
+__pycache__/
+
+# Python bytecode
+*.pyc
+
+# PyCharm settings
+.idea/
+
+# Other default ignored files
+*.log
