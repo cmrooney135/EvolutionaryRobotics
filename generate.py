@@ -1,9 +1,12 @@
 import pyrosim.pyrosim as pyrosim
 
 pyrosim.Start_SDF("boxes.sdf")
+for j in range(5):
+    for k in range(5):
+        dim = 1
 
-pyrosim.Send_Cube(name="Box", pos=[0,0,0.5] , size=[1, 1, 1])
-pyrosim.Send_Cube(name="Box2", pos=[0,0,0.5] , size=[1, 1, 1])
-
-
+        for i in range (10):
+            add = i + 0.5
+            pyrosim.Send_Cube(name=f"Box_{j}_{k}_{i}", pos=[j, k, add], size=[dim, dim, dim])
+            dim = dim * 0.9
 pyrosim.End()
