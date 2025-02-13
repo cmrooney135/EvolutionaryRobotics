@@ -6,9 +6,13 @@ import numpy as np
 import random as rand
 
 
-amplitude = 1
-frequency = 100 * np.pi/4.
-phaseOffset = 0
+amplitude_frontleg = 1
+frequency_frontleg = 100 * np.pi
+phaseOffset_frontleg = np.pi/4
+
+amplitude_backleg = 2
+frequency_backleg = -100 * np.pi /4
+phaseOffset_backleg = 0
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -24,13 +28,20 @@ pyrosim.Prepare_To_Simulate(robotID)
 backLegSensorValues = np.zeros(1000)
 frontLegSensorValues = np.zeros(1000)
 
-targetAngles = np.sin(np.linspace(-1. ,1. , 1000))
-targetAngles = targetAngles * (np.pi / 4)
-motorControl = np.zeros(1000)
+targetAngles_frontleg = np.sin(np.linspace(-1. ,1. , 1000))
+targetAngles_frontleg = targetAngles_frontleg * (np.pi / 4)
+motorControl_frontleg = np.zeros(1000)
+targetAngles_backleg = np.sin(np.linspace(-1. ,1. , 1000))
+targetAngles_backleg = targetAngles_backleg * (np.pi / 4)
+motorControl_backleg = np.zeros(1000)
 for i in range (1000):
-    motorControl[i] = amplitude * np.sin(frequency * targetAngles[i] + phaseOffset)
+    motorControl_frontleg[i] = amplitude_frontleg * np.sin(frequency_frontleg * targetAngles_frontleg[i] + phaseOffset_frontleg)
+    motorControl_backleg[i] = amplitude_backleg * np.sin(frequency_backleg * targetAngles_backleg[i] + phaseOffset_backleg)
 
-#np.save("data/motorControl.npy", motorControl)
+
+#np.save("data/motorControlfront.npy", motorControl_frontleg)
+#np.save("data/motorControlback.npy", motorControl_backleg)
+
 
 #exit()
 
@@ -46,13 +57,13 @@ for i in range (1000):
         bodyIndex=robotID,
         jointName=b"torso_backLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=motorControl[i],
+        targetPosition=-np.pi/3,
         maxForce=50)
     pyrosim.Set_Motor_For_Joint(
         bodyIndex=robotID,
         jointName=b"torso_frontLeg",
         controlMode=p.POSITION_CONTROL,
-        targetPosition=motorControl[i],
+        targetPosition=np.pi/3,
         maxForce=50)
 
     time.sleep(0.0004)
