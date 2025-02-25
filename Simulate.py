@@ -1,3 +1,4 @@
+'''
 import pybullet as p
 import time
 import pybullet_data
@@ -52,3 +53,8 @@ for i in range (c.size):
 p.disconnect()
 np.save("data/back_leg_sensor_values.npy", backLegSensorValues)
 np.save("data/front_leg_sensor_values.npy", frontLegSensorValues)
+'''
+from simulation import SIMULATION
+
+simulation = SIMULATION()
+simulation.Run()
