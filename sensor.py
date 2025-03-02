@@ -11,5 +11,7 @@ class SENSOR:
         self.values[t] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
         if t == c.size - 1:
             print(f"sensor value for {self.linkName}: {self.values}")
-        #print(self.values)
+
+    def Save_Values(self):
+        np.save(f"data/sensors/{self.linkName}_values", self.values)
 
