@@ -9,6 +9,11 @@ from robot import ROBOT
 from sensor import SENSOR
 class SIMULATION:
     def __init__(self):
+        self.physicsClient = p.connect(p.GUI)
+        p.setAdditionalSearchPath(pybullet_data.getDataPath())
+        p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
+        p.setGravity(0, 0, c.gravZ, self.physicsClient)
+
         self.world = WORLD()
         self.robot = ROBOT()
 
@@ -17,8 +22,9 @@ class SIMULATION:
         for i in range(c.size):
             p.stepSimulation()
             self.robot.Sense(i)
+            self.robot.Think()
             self.robot.Act(i)
-            print(f"iteration : {i}")
+            #print(f"iteration : {i}")
 
             time.sleep(c.sleeptime)
 

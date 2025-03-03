@@ -24,13 +24,14 @@ class MOTOR:
         self.time_steps = np.linspace(0, 2 * np.pi, c.size)
         self.motorValues = self.amplitude * np.sin(self.frequency * self.time_steps + self.offset)
 
-    def Set_Value(self, robot, t):
+    def Set_Value(self, robot, desiredAngle):
 
+        targetPosition = desiredAngle
         pyrosim.Set_Motor_For_Joint(
             bodyIndex=robot.robotID,
             jointName=self.jointName,
             controlMode=p.POSITION_CONTROL,
-            targetPosition=self.motorValues[t],
+            targetPosition=targetPosition,
             maxForce=c.maxforce)
 
     def Save_Values(self):
