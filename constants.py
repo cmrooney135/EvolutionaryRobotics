@@ -9,4 +9,4 @@ gravZ = -10
 
 sleeptime = 0.01
 maxforce = 50
-size = 1000
+size = 100
