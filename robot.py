@@ -16,6 +16,7 @@ class ROBOT:
         self.motors = {}
         self.nn = NEURAL_NETWORK("brain.nndf")
 
+
         pyrosim.Prepare_To_Simulate(self.robotID)
 
         self.Prepare_To_Sense()
