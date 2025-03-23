@@ -1,4 +1,3 @@
-from robot import ROBOT
 import pybullet as p
 import pybullet as p
 import time
