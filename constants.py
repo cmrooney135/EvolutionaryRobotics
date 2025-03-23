@@ -10,4 +10,4 @@ gravZ = -10
 sleeptime = 0.01
 maxforce = 50
 size = 100
-numberOfGenerations = 2
+numberOfGenerations = 10

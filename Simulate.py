@@ -54,8 +54,10 @@ p.disconnect()
 np.save("data/back_leg_sensor_values.npy", backLegSensorValues)
 np.save("data/front_leg_sensor_values.npy", frontLegSensorValues)
 '''
+import sys
 from simulation import SIMULATION
 
-simulation = SIMULATION()
+directOrGUI = sys.argv[1]  # Extract command-line argument
+simulation = SIMULATION(directOrGUI)  # Pass argument to SIMULATION
 simulation.Run()
 simulation.Get_Fitness()
