@@ -8,11 +8,16 @@ from world import WORLD
 from robot import ROBOT
 from sensor import SENSOR
 class SIMULATION:
-    def __init__(self, directOrGUI):
+    def __init__(self, directOrGUI, solutionID):
+        self.directOrGUI = directOrGUI
+        self.solutionID = solutionID
         if directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
+            print("direct or GUI : DIRECT")
         else:
             self.physicsClient = p.connect(p.GUI)
+            print("direct or GUI : GUI")
+
 
         print(f"Simulation running in {directOrGUI} mode")
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -20,7 +25,7 @@ class SIMULATION:
         p.setGravity(0, 0, c.gravZ, self.physicsClient)
 
         self.world = WORLD()
-        self.robot = ROBOT()
+        self.robot = ROBOT(self.solutionID)
 
 
     def Run(self):
@@ -32,8 +37,10 @@ class SIMULATION:
             #print(f"iteration : {i}")
 
             time.sleep(c.sleeptime)
+
     def Get_Fitness(self):
         self.robot.Get_Fitness()
+    def __del__(self):
+        p.disconnect()
 
-def __del__(self):
-    p.disconnect()
+

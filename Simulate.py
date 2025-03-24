@@ -57,7 +57,17 @@ np.save("data/front_leg_sensor_values.npy", frontLegSensorValues)
 import sys
 from simulation import SIMULATION
 
-directOrGUI = sys.argv[1]  # Extract command-line argument
-simulation = SIMULATION(directOrGUI)  # Pass argument to SIMULATION
+
+if len(sys.argv) > 1:
+    mode = sys.argv[1]
+else:
+    mode = "DIRECT"
+
+if len(sys.argv) > 2:
+    solutionID = sys.argv[2]
+else:
+    solutionID = "0"  # NEW: Default ID if not provided
+
+simulation = SIMULATION(mode, solutionID)
 simulation.Run()
 simulation.Get_Fitness()
