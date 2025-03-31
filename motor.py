@@ -5,9 +5,6 @@ import pybullet as p
 
 class MOTOR:
     def __init__(self, jointName):
-        self.offset = None
-        self.frequency = None
-        self.amplitude = None
         self.jointName = jointName
         self.motorValues = np.zeros(c.size)
         self.Prepare_To_Act()
@@ -18,8 +15,6 @@ class MOTOR:
             self.frequency = c.frequency
         else:
             self.frequency = c.frequency /2
-
-
         self.offset = c.phaseOffset
         self.time_steps = np.linspace(0, 2 * np.pi, c.size)
         self.motorValues = self.amplitude * np.sin(self.frequency * self.time_steps + self.offset)
